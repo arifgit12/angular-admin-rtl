@@ -1,17 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, Http } from '@angular/http';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
-import { TranslateModule, MissingTranslationHandler } from 'ng2-translate';
+import { TranslateService, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, MissingTranslationHandler } from '@ngx-translate/core';
 import { MyMissingTranslationHandler } from './missingtemplate.component'
 
-export function createTranslateLoader( http: Http ) {
-    return new TranslateStaticLoader( http, '../assets/i18n', '.json' );
+export function createTranslateLoader( httpClient: HttpClient ) {
+    return new TranslateHttpLoader( httpClient, '../assets/i18n/', '.json' );
 }
 
 @NgModule({
@@ -21,13 +22,15 @@ export function createTranslateLoader( http: Http ) {
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     TranslateModule.forRoot({
-        deps: [Http],
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader)
-    }),
+			loader: {
+			  provide: TranslateLoader,
+			  useFactory: (createTranslateLoader),
+			  deps: [HttpClient]
+			}
+		})
   ],
   providers: [ 
     { 

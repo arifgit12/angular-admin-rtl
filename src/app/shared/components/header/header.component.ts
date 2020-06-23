@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService, TranslateModule } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 import {OnInit, OnDestroy} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 

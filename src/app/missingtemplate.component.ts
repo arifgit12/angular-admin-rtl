@@ -1,5 +1,7 @@
-import {MissingTranslationHandler, MissingTranslationHandlerParams} from 'ng2-translate';
- 
+import {MissingTranslationHandler, MissingTranslationHandlerParams} from '@ngx-translate/core';
+import { Injectable } from "@angular/core";
+
+@Injectable()
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
     handle(params: MissingTranslationHandlerParams) {
         console.log(params);
