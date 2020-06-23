@@ -48,5 +48,6 @@
         "comment":"Comments",
         "comment-placeholder":"Enter your comments",
         "btn":"Send"
-    }
+    },
+    "Dashboard" : "Dashboard"
   }
